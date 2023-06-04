@@ -16,7 +16,7 @@ module.exports.pocionController = {
   //Funcion que agrega las pociones
   async agregarPocion(req, res) {
     try {
-      const { nombre, categoria, precio, imagen, unidadesDisponibles, ingrediente1, ingrediente2, ingrediente3, ingrediente4, descripcion } = req.body;
+      const { nombre, categoria, precio, unidadesDisponibles, ingrediente1, ingrediente2, ingrediente3, ingrediente4, descripcion } = req.body;
 
       // Validacion para ver si hay al menos 2 ingredientes seleccionados
       const ingredientesSeleccionados = [ingrediente1, ingrediente2, ingrediente3, ingrediente4].filter(Boolean);
@@ -87,8 +87,7 @@ module.exports.pocionController = {
         return res.status(404).json('Poción no encontrada');
       }
 
-      const { nombre, categoria, precio, imagen, unidadesDisponibles, ingrediente1, ingrediente2, ingrediente3, ingrediente4, descripcion } = req.body;
-
+      const { nombre, categoria, precio, unidadesDisponibles, ingrediente1, ingrediente2, ingrediente3, ingrediente4, descripcion } = req.body;
 
       const ingredientesSeleccionados = [ingrediente1, ingrediente2, ingrediente3, ingrediente4].filter(Boolean);
       if (ingredientesSeleccionados.length < 2) {
@@ -132,17 +131,17 @@ module.exports.pocionController = {
       pocionExistente.nombre = nombre;
       pocionExistente.categoria = categoria;
       pocionExistente.precio = precio;
-      pocionExistente.imagen = imagen;
       pocionExistente.unidadesDisponibles = unidadesDisponibles;
-      pocionExistente.ingrediente1 = ObjIngrediente1 ? ObjIngrediente1.nombre : 'Sin ingrediente';
-      pocionExistente.ingrediente2 = ObjIngrediente2 ? ObjIngrediente2.nombre : 'Sin ingrediente';
-      pocionExistente.ingrediente3 = ObjIngrediente3 ? ObjIngrediente3.nombre : 'Sin ingrediente';
-      pocionExistente.ingrediente4 = ObjIngrediente4 ? ObjIngrediente4.nombre : 'Sin ingrediente';
+      pocionExistente.ingrediente1 = ingrediente1 ?? "Sin ingrediente";
+      pocionExistente.ingrediente2 = ingrediente2 ?? "Sin ingrediente";
+      pocionExistente.ingrediente3 = ingrediente3 ?? "Sin ingrediente";
+      pocionExistente.ingrediente4 = ingrediente4 ?? "Sin ingrediente";
       pocionExistente.descripcion = descripcion;
 
       await pocionExistente.save();
       res.status(200).json('Poción editada con éxito');
     } catch (error) {
+      console.log(error)
       res.status(500).json({ error: 'Ocurrió un error al editar la poción' });
     }
   },
@@ -165,7 +164,6 @@ module.exports.pocionController = {
     }
   }
   ,
-
 
   //Funcion que borra las pociones
   async borrarPocion(req, res) {
