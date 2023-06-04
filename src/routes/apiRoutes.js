@@ -16,6 +16,8 @@ router.post('/agregarPocion', pocionController.agregarPocion);
 //Ruta para editar pociones
 router.put('/editarPocion', pocionController.editarPocion);
 
+router.put('/cambiarImagen', pocionController.cambiarImagenPocion)
+
 //Ruta para borrar pociones
 router.delete('/eliminarPocion', pocionController.borrarPocion);
 

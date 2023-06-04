@@ -8,7 +8,7 @@ const pociones = sequelize.define('pociones', {
         type: DataTypes.INTEGER
     },
     nombre: DataTypes.STRING,
-    categoria: DataTypes.INTEGER,
+    categoria: DataTypes.STRING,
     precio: DataTypes.INTEGER,
     imagen: DataTypes.INTEGER,
     unidadesDisponibles: DataTypes.INTEGER,
